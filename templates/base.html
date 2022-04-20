@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cameron Sweeney</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css" />
+    
+    <!-- https://fonts.google.com/specimen/Merriweather+Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="legs">
+    <!-- because it separates the footer from the rest of the body -->
+    
+<div class="header_bar">
+    <h1>Cameron Sweeney</h1>
+
+    <a href="{% url 'home' %}">Home</a>
+    <a href="#">About Me</a>
+    <a href="#">Projects</a>
+    <a href="#">Coding Resources</a>
+    <a href="#">Contact Me</a>
+</div>
+
+<article>
+{% block content %}
+{% endblock content %}
+</article>
+    
+<div class="footer_bar">
+    <p>Yadda yadda yadda. Testing footer. (C) 2k22.</p>
+    <p>If you liked what you saw here, you should like and subscribe!!</p>
+</div>
+    
+</div>
+    
+</body>
+</html>
