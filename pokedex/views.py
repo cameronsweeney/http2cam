@@ -4,7 +4,7 @@ from .serializers import PkmnSpeciesSerializer
 
 class ListPkmnSpecies(generics.ListAPIView):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
-    queryset = PkmnSpecies.objects.all()
+    queryset = PkmnSpecies.objects.all().order_by('id')
     serializer_class = PkmnSpeciesSerializer
 
 class DetailPkmnSpecies(generics.RetrieveUpdateDestroyAPIView):
