@@ -3,10 +3,11 @@ from .models import PkmnSpecies
 from .serializers import PkmnSpeciesSerializer
 
 class ListPkmnSpecies(generics.ListAPIView):
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
     queryset = PkmnSpecies.objects.all()
     serializer_class = PkmnSpeciesSerializer
 
 class DetailPkmnSpecies(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.DjangoModelPermissionsOrAnonReadOnly)
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
     queryset = PkmnSpecies.objects.all()
     serializer_class = PkmnSpeciesSerializer
