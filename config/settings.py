@@ -31,7 +31,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
     'localhost', '127.0.0.1',
-    '.herokuapp.com',
+    'http2cam.herokuapp.com',
     'request.cam', '.request.cam'
 ]
 
