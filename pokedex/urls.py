@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from .views import ListPkmnSpecies, DetailPkmnSpecies_by_ID, DetailPkmnSpecies_by_name
+from .views import PkmnSpeciesViewSet, Name_PkmnSpeciesViewSet
 
 urlpatterns = [
-    path('<int:pk>/', DetailPkmnSpecies_by_ID.as_view()),
-    path('<str:species>/', DetailPkmnSpecies_by_name.as_view()),
-    path('', ListPkmnSpecies.as_view())
+    path('<int:pk>/', PkmnSpeciesViewSet.as_view()),
+    path('<str:species>/', Name_PkmnSpeciesViewSet.as_view()),
+    path('', PkmnSpeciesViewSet.as_view())
 ]
