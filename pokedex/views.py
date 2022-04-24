@@ -1,14 +1,13 @@
-from rest_framework import generics, permissions, viewsets
+from rest_framework import generics, permissions
 from .models import PkmnSpecies
 from .serializers import PkmnSpeciesSerializer
 
-class PkmnSpeciesViewSet(viewsets.ModelViewSet):
+class ListPkmnSpecies(generics.ListAPIView):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
     queryset = PkmnSpecies.objects.all().order_by('id')
     serializer_class = PkmnSpeciesSerializer
 
-class Name_PkmnSpeciesViewSet(viewsets.ModelViewSet):
+class DetailPkmnSpecies(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
     queryset = PkmnSpecies.objects.all()
     serializer_class = PkmnSpeciesSerializer
-    lookup_field = 'name'
