@@ -32,6 +32,9 @@ class PkmnSpecies(models.Model):
     class Meta:
         verbose_name = 'Pokémon species name'
 
+    def __str__(self):
+        return f"#{str(self.natdex).zfill(3)}: {self.name}"
+
 class SpeciesHeader_RBY(models.Model):
     id = models.OneToOneField(PkmnSpecies, primary_key=True, on_delete=models.CASCADE)
 
@@ -49,9 +52,6 @@ class SpeciesHeader_RBY(models.Model):
     growth_rate = models.ForeignKey(GrowthRate, on_delete=models.SET_NULL, null=True)
 
     tmhm_bits = models.BinaryField()
-
-    def __str__(self):
-        return f"#{str(self.natdex).zfill(3)}: {self.name}"
 
     class Meta:
         verbose_name = verbose_name_plural = 'Pokémon species data, RBY'
