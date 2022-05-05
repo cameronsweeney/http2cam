@@ -1,9 +1,12 @@
-from django.contrib import admin
 from django.urls import path
-from .views import ListPkmnSpecies, DetailPkmnSpecies
+from rest_framework import routers
+from .views import PkmnSpeciesViewSet, PkmnSpecies_by_name
 
 urlpatterns = [
-    path('<int:pk>/', DetailPkmnSpecies.as_view()),
-   #path('<str:species>/', Name_PkmnSpeciesViewSet.as_view()),
-    path('', ListPkmnSpecies.as_view())
+    path('<str:name>', PkmnSpecies_by_name.as_view())
 ]
+
+router = routers.SimpleRouter()
+router.register('', PkmnSpeciesViewSet, basename='pkmn')
+
+urlpatterns += router.urls
