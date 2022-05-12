@@ -10,7 +10,7 @@ class Game(models.Model):
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        field = ('name', 'name_long', 'gen', 'series')
+        fields = ('name', 'name_long', 'gen', 'series')
 
 class GameViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]

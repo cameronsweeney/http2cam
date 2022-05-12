@@ -11,7 +11,7 @@ class PkmnSpecies(models.Model):
     pronounce_anime_URL = models.CharField(max_length=200, blank=True) # URL link to clip where they say the Pokémon's name in the anime
     
     class Meta:
-        verbose_name = 'Pokémon species'
+        verbose_name = verbose_name_plural = 'Pokémon species'
 
     def __str__(self):
         return f"#{str(self.natdex).zfill(3)}: {self.name}"

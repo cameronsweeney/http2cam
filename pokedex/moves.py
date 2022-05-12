@@ -22,7 +22,6 @@ class MoveViewSet(viewsets.ModelViewSet):
     queryset = Move.objects.all()
     serializer_class = MoveSerializer
 
-
 class LevelupMove(models.Model):
     pkmn = models.ForeignKey(pkmn.PkmnSpecies, on_delete=models.SET_NULL, null=True)
     move = models.ForeignKey(Move, on_delete=models.SET_NULL, null=True)
