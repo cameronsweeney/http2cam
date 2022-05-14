@@ -4,7 +4,7 @@ from rest_framework import serializers, permissions, viewsets
 class Game(models.Model):
     name = models.CharField(max_length=20, primary_key=True)
     name_long = models.CharField(max_length=100, blank=True)
-    abbreviation = models.CharField(max_length=20, blank=True)
+    abbreviation = models.CharField(max_length=20, blank=True, unique=True)
     gen = models.PositiveSmallIntegerField(blank=True)
     series = models.CharField(max_length=20, blank=True)
 
