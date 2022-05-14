@@ -35,7 +35,7 @@ class PkmnSpecies_by_name(generics.RetrieveUpdateDestroyAPIView):
 class Pkmn_RBY(models.Model):
     # RBY's internal ID for this species
     id = models.PositiveSmallIntegerField(primary_key=True)
-    pkmn = models.OneToOneField(PkmnSpecies, on_delete=models.SET_NULL, null=True)
+    pkmn = models.ForeignKey(PkmnSpecies, to_field='name', db_column='pkmn', on_delete=models.SET_NULL, null=True)
 
     type1 = models.ForeignKey(meta.Type, on_delete=models.SET_NULL, null=True, related_name='type_one')
     type2 = models.ForeignKey(meta.Type, on_delete=models.SET_NULL, null=True, related_name='type_two', blank=True)
