@@ -56,6 +56,9 @@ class Pkmn_RBY(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = 'Pokémon species data, RBY'
 
+    def __str__(self):
+        return f"RBY Data for 0x{self.id:02X} {self.pkmn}"
+
 class Pkmn_RBY_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Pkmn_RBY
@@ -71,10 +74,13 @@ class Pkmn_RBY_ViewSet(viewsets.ModelViewSet):
 
 class Evolution(models.Model):
     id = models.SmallAutoField(primary_key=True)
-    pkmn = models.ForeignKey(PkmnSpecies, on_delete=models.CASCADE, related_name='pkmn_from')
-    into = models.ForeignKey(PkmnSpecies, on_delete=models.CASCADE, related_name='pkmn_into')
+    pkmn = models.ForeignKey(PkmnSpecies, to_field='name', db_column='pkmn', on_delete=models.CASCADE, related_name='pkmn_from')
+    into = models.ForeignKey(PkmnSpecies, to_field='name', db_column='into', on_delete=models.CASCADE, related_name='pkmn_into')
     how = models.CharField(max_length=200, blank=True)
     when = models.PositiveSmallIntegerField(blank=True)
+
+    def __str__(self):
+        return f"Evolution: {self.pkmn} -> {self.into}"
 
 class EvolutionSerializer(serializers.ModelSerializer):
     class Meta:

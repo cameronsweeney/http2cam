@@ -7,6 +7,9 @@ class Item(models.Model):
     price = models.PositiveIntegerField(null=True, blank=True)
     effect = models.TextField(blank=True)
 
+    def __str__(self):
+        return f"Item: {self.name}"
+
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item

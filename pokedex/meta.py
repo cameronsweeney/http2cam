@@ -4,8 +4,12 @@ from rest_framework import serializers, permissions, viewsets
 class Game(models.Model):
     name = models.CharField(max_length=20, primary_key=True)
     name_long = models.CharField(max_length=100, blank=True)
+    abbreviation = models.CharField(max_length=20, blank=True)
     gen = models.PositiveSmallIntegerField(blank=True)
     series = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        return f"Game: {self.name_long} ({self.abbreviation})"
 
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +24,9 @@ class GameViewSet(viewsets.ModelViewSet):
 class Type(models.Model):
     name_url = models.CharField(max_length=25, primary_key=True)
     name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return f"Type: {self.name}"
 
 class TypeSerializer(serializers.ModelSerializer):
     class Meta:
