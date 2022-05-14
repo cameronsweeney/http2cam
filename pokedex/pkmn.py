@@ -36,6 +36,7 @@ class Pkmn_RBY(models.Model):
     # RBY's internal ID for this species
     id = models.PositiveSmallIntegerField(primary_key=True)
     pkmn = models.ForeignKey(PkmnSpecies, to_field='name', db_column='pkmn', on_delete=models.SET_NULL, null=True)
+    natdex = models.PositiveSmallIntegerField()
 
     type1 = models.ForeignKey(meta.Type, on_delete=models.SET_NULL, null=True, related_name='type_one')
     type2 = models.ForeignKey(meta.Type, on_delete=models.SET_NULL, null=True, related_name='type_two', blank=True)
@@ -58,14 +59,14 @@ class Pkmn_RBY(models.Model):
 class Pkmn_RBY_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Pkmn_RBY
-        fields = ('pkmn', 'id', 'type1', 'type2',
+        fields = ('pkmn', 'id', 'natdex', 'type1', 'type2',
             'hp', 'attack', 'defense', 'special', 'speed',
             'catch_rate', 'base_exp', 'growth_rate', 'tmhm_bits'
             )
 
 class Pkmn_RBY_ViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
-    queryset = Pkmn_RBY.objects.all()
+    queryset = Pkmn_RBY.objects.all().order_by('natdex')
     serializer_class = Pkmn_RBY_Serializer
 
 class Evolution(models.Model):
