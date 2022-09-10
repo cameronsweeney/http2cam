@@ -37,7 +37,7 @@ class LevelupMove(models.Model):
     def __str__(self):
         start_string = f"{self.pkmn} learns {self.move}"
         if self.level:
-            start_string += f"at Lv.{self.level}"
+            start_string += f" at Lv.{self.level}"
         return start_string + f" ({self.game})"
             
 
