@@ -1,6 +1,6 @@
 # cams/views.py
 from rest_framework import generics, response, status
-from drf_multiple_model.views import ObjectMultipleModelAPIView
+from drf_multiple_model import views
 from . import models, serializers, permissions
 
 
@@ -15,7 +15,7 @@ class CamsDashboardView(generics.ListAPIView):
             return response.Response(content, status=status.HTTP_403_FORBIDDEN)
         return response.Response(serializers.AppViewSerializer(self.get_queryset(), many=True).data)
 
-class CamsAppView(ObjectMultipleModelAPIView):
+class CamsAppView(views.ObjectMultipleModelAPIView):
     permission_classes = [permissions.CamsAppPermission]
 
     def get_queryset(self):
@@ -43,7 +43,7 @@ class CamsAppView(ObjectMultipleModelAPIView):
         ]
         return querylist
 
-class CamsModelView(ObjectMultipleModelAPIView):
+class CamsModelView(views.ObjectMultipleModelAPIView):
     permission_classes = [permissions.CamsModelPermission]
         
     def get_queryset(self):
