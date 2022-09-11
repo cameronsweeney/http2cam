@@ -29,6 +29,7 @@ class CamsModelInstanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CamsModelInstance
         fields = ('filepath', 'id', 'content')
+        depth = 1
 
 class CamsModelSerializer(serializers.ModelSerializer):
     class Meta:

@@ -39,3 +39,15 @@ class CamsFileTreePermission(permissions.DjangoObjectPermissions):
             return True
         else:
             return False
+
+class CamsCRUDPermission(permissions.DjangoObjectPermissions):
+    def has_object_permission(self, request, view, obj):
+        SafeDumper.add_representer(exceptions.ErrorDetail, SafeRepresenter.represent_str)
+        try:
+            app_authorization = CamsAppAuthorization.objects.filter(user=request.user.id, app=obj.cams_model.app)
+        except ObjectDoesNotExist:
+            return False
+        if app_authorization.exists():
+            return True
+        else:
+            return False

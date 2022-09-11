@@ -82,3 +82,8 @@ class CamsFileTreeView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         self.check_object_permissions(self.request, kwargs['codename'])
         return self.list(request, *args, **kwargs)
+
+class CamsModelInstanceCRUDView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [permissions.CamsCRUDPermission]
+    queryset = models.CamsModelInstance.objects.select_related('cams_model__app').all()
+    serializer_class = serializers.CamsModelInstanceSerializer
