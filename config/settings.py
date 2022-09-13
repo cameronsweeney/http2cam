@@ -30,7 +30,8 @@ SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
-    'localhost', '127.0.0.1',
+    'localhost', 
+    '127.0.0.1',
     'http2cam.herokuapp.com',
     'request.cam',  '.request.cam',
     'machine.cam',  '.machine.cam',
