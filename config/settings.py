@@ -29,13 +29,12 @@ SECRET_KEY = env.str("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = [
-    'localhost', '127.0.0.1',
-    'http2cam.herokuapp.com',
-    'request.cam',  '.request.cam',
-    'machine.cam',  '.machine.cam',
-    'terminal.cam', '.terminal.cam',
-]
+ALLOWED_HOSTS = [ '*' ]
+#    'localhost', '127.0.0.1',
+#    'http2cam.herokuapp.com',
+#    'request.cam',  '.request.cam',
+#    'machine.cam',  '.machine.cam',
+#    'terminal.cam', '.terminal.cam',
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
