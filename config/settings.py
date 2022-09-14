@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     'terminal.cam', '.terminal.cam',
 ]
 
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
@@ -82,6 +83,11 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = False
+from corsheaders.defaults import default_headers
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "X-CSRF-Token",
+]
+
 
 ROOT_URLCONF = 'config.urls'
 
