@@ -32,13 +32,18 @@ class CamsAppView(views.ObjectMultipleModelAPIView):
             {
                 'queryset': models.CamsModel.objects.filter(app=app_name),
                 'serializer_class': serializers.CamsModelSerializer,
-                'label': f'{app_name}/model'
+                'label': 'models'
             },
             {
                 'queryset': models.CamsActionGlobal.objects.filter(app=app_name),
                 'serializer_class': serializers.CamsActionSerializer,
-                'label': f'{app_name}/action'
+                'label': 'actions'
             },
+            {
+                'queryset': models.CamsFileTree.objects.filter(app=app_name),
+                'serializer_class': serializers.CamsFileTreeSerializer,
+                'label': 'filetrees'
+            }
 
         ]
         return querylist

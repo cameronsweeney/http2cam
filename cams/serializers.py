@@ -40,3 +40,8 @@ class CamsActionSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.CamsActionGlobal
         fields = ('codename', 'name', 'description')
+
+class CamsFileTreeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.CamsFileTree
+        fields = ('name', 'codename', 'app', 'description')
