@@ -41,3 +41,6 @@ class CamsFileTree(models.Model):
     codename = models.CharField(max_length=30, primary_key=True)
     app = models.ForeignKey(CamsApp, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
+
+class CamsFormResponse(models.Model):
+    response_data = models.JSONField()

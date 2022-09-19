@@ -5,6 +5,8 @@ from rest_framework_yaml.encoders import SafeDumper
 from yaml.representer import SafeRepresenter
 from .models import CamsAppAuthorization, CamsFileTree, CamsModel, CamsApp
 
+
+
 class CamsAppPermission(permissions.DjangoObjectPermissions):
     def has_object_permission(self, request, view, app_name):
         SafeDumper.add_representer(exceptions.ErrorDetail, SafeRepresenter.represent_str)

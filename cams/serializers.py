@@ -26,9 +26,10 @@ class AppViewSerializer(serializers.ModelSerializer):
         depth = 1
 
 class CamsModelInstanceSerializer(serializers.ModelSerializer):
+    cams_model = serializers.PrimaryKeyRelatedField(many=False, queryset=models.CamsModel.objects.all())
     class Meta:
         model = models.CamsModelInstance
-        fields = ('filepath', 'id', 'content')
+        fields = ('filepath', 'id', 'content', 'cams_model')
         depth = 1
 
 class CamsModelSerializer(serializers.ModelSerializer):

@@ -30,7 +30,8 @@ SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
-    'localhost', 
+    'localhost',
+    'http://localhost:3000', 
     '127.0.0.1',
     'http2cam.herokuapp.com',
     'request.cam',  '.request.cam',
@@ -38,9 +39,6 @@ ALLOWED_HOSTS = [
     'terminal.cam', '.terminal.cam',
 ]
 
-
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=True)
 SECURE_HSTS_SECONDS = 3600
 SECURE_HSTS_PRELOAD = True
@@ -56,12 +54,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'dj_rest_auth',
     'drf_multiple_model',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'django_hosts',
 
     'accounts',
     'homepage',
@@ -70,6 +72,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -79,15 +82,23 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_CREDENTIALS = True
 from corsheaders.defaults import default_headers
 CORS_ALLOW_HEADERS = list(default_headers) + [
-    "X-CSRF-Token",
+    'X-CSRFToken',
+    'credentials'
 ]
 
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_SAMESITE = 'none'
+#SESSION_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'config.urls'
 
@@ -173,6 +184,7 @@ LOGIN_REDIRECT_URL = 'cams_dashboard'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework_yaml.parsers.YAMLParser',
@@ -187,3 +199,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+SITE_ID = 1
+ROOT_HOSTCONF = 'config.hosts'
+DEFAULT_HOST = 'homepage_host'
