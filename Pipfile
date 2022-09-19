@@ -16,6 +16,7 @@ dj-rest-auth = "*"
 django-rest-multiple-models="*"
 django-crispy-forms = "*"
 crispy-bootstrap5 = "*"
+django-hosts = "*"
 
 [dev-packages]
 
