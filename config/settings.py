@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'drf_multiple_model',
     'crispy_forms',
     'crispy_bootstrap5',
-    'django_hosts',
+    #'django_hosts',
 
     'accounts',
     'homepage',
@@ -72,7 +72,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django_hosts.middleware.HostsRequestMiddleware',
+    #'django_hosts.middleware.HostsRequestMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -82,7 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_hosts.middleware.HostsResponseMiddleware'
+    #'django_hosts.middleware.HostsResponseMiddleware'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -203,9 +203,8 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SITE_ID = 1
-ROOT_HOSTCONF = 'config.hosts'
-ROOT_URLCONF = 'config.urls'
-DEFAULT_HOST = 'homepage_host'
+#ROOT_HOSTCONF = 'config.hosts'
+#DEFAULT_HOST = 'homepage_host'
 
 LOGGING = {
     'version': 1,
