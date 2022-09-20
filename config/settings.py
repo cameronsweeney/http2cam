@@ -31,7 +31,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 ALLOWED_HOSTS = [
     'localhost',
-    'http://localhost:3000', 
+    'http://localhost:3000',
     '127.0.0.1',
     'http2cam.herokuapp.com',
     'request.cam',  '.request.cam',
@@ -204,6 +204,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 SITE_ID = 1
 ROOT_HOSTCONF = 'config.hosts'
+ROOT_URLCONF = 'config.urls'
 DEFAULT_HOST = 'homepage_host'
 
 LOGGING = {
