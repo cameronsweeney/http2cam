@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 import uuid
+from datetime import datetime
 
 class CamsApp(models.Model):
     name = models.CharField(max_length=30)
@@ -44,3 +45,4 @@ class CamsFileTree(models.Model):
 
 class CamsFormResponse(models.Model):
     response_data = models.JSONField()
+    date = models.DateTimeField(default=datetime.now, blank=True)
