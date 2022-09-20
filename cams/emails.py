@@ -9,7 +9,8 @@ test_email_backend = EmailBackend(
     host = 'mail5.hostingplatform.com',
     port = 587,
     username = 'conference@grandstrandapna.org',
-    password = env.str("EMAIL_PASSWORD")
+    password = env.str("EMAIL_PASSWORD"),
+    use_tls=True
 )
 
 def testSendEmail():
@@ -27,7 +28,7 @@ def mailMergeByDay(data):
     test_email_backend.open()
     for current_registrant in data['queried']:
         print(current_registrant)
-        body = f"Dear {current_registrant['content']['First Name']} {current_registrant['content']['Last Name']},\n\n"
+        body = f"Dear {current_registrant['content']['First Name']} {current_registrant['content']['Last Name']},"
         body += """
             Thank you for attending the 19th Annual Lecture at the Beach today!
 
@@ -35,7 +36,8 @@ def mailMergeByDay(data):
 
             Please click the link below to access the evaluation:
         """
-        body += f"https://request.cam/cams/LectureattheBeach/" + str(current_registrant['id']) + "/eval?" + data['day']
+        body += f"https://request.cam/cams/LectureattheBeach/" + 'd1934f47-bd16-4a2e-8445-1c6ee160c4df' + "/eval?" + data['day']
+        # str(current_registrant['id']) + "/eval?" + data['day']
         body += """
             - Lecture at the Beach 2022
             - http://grandstrandapna.org/
@@ -45,7 +47,7 @@ def mailMergeByDay(data):
             subject = f"Lecture at the Beach 2022 - {data['day']} Evaluations",
             body = body,
             from_email = '"Lecture at the Beach 2022" <conference@grandstrandapna.org>',
-            to = ['xoxojohnnyutah@gmail.com', 'camswee@gmail.com'],
+            to = [current_registrant['content']['E-mail Address']],
             connection = test_email_backend
         ).send()
     test_email_backend.close()
