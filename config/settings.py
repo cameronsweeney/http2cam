@@ -238,3 +238,5 @@ LOGGING = {
         }
     }
 }
+
+EMAIL_USE_SSL = True
