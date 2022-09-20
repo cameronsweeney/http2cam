@@ -56,7 +56,8 @@ class latbEmailEndpointView(generics.RetrieveAPIView):
         self.check_object_permissions(self.request, 'latb22')
         queryset = self.get_queryset()
         data = {'day': kwargs['day'], 'queried': list(queryset.values())}
-        #emails.mailMergeByDay(data)
+        print(data)
+        emails.mailMergeByDay(data)
         return JsonResponse(data, safe=False)
 
 class CamsDashboardView(generics.ListAPIView):

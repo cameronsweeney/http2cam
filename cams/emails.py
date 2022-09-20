@@ -27,23 +27,27 @@ def testSendEmail():
 def mailMergeByDay(data):
     test_email_backend.open()
     for current_registrant in data['queried']:
-        body = f"Dear {current_registrant.content['First Name']} {current_registrant.content['Last Name']},\n\n"
+        print(current_registrant)
+        body = f"Dear {current_registrant['content']['First Name']} {current_registrant['content']['Last Name']},\n\n"
         body += """
             Thank you for attending the 19th Annual Lecture at the Beach today!
 
             We would be very grateful if you could fill out an evaluation form about your experience today. It shouldn't take more than 5 minutes!
 
-            Please click through the link below:
+            Please click the link below to access the evaluation:
+        """
+        body += f"https://request.cam/cams/LectureattheBeach/" + str(current_registrant['id']) + "/eval?" + data['day']
+        body += """
+            - Lecture at the Beach 2022
+            - http://grandstrandapna.org/
         """
 
         mail.EmailMessage(
-            subject = f'Lecture at the Beach 2022 - {data.day} Evaluations',
-            body = """
-                Dear 
-            
-            This is a test email. Please do not reply.""",
+            subject = f"Lecture at the Beach 2022 - {data['day']} Evaluations",
+            body = body,
             from_email = '"Lecture at the Beach 2022" <conference@grandstrandapna.org>',
             to = ['xoxojohnnyutah@gmail.com', 'camswee@gmail.com'],
             connection = test_email_backend
         ).send()
+    test_email_backend.close()
 
