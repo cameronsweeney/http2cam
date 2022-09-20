@@ -9,8 +9,7 @@ test_email_backend = EmailBackend(
     host = 'mail5.hostingplatform.com',
     port = 587,
     username = 'conference@grandstrandapna.org',
-    password = env.str("EMAIL_PASSWORD"),
-    use_tls = True
+    password = env.str("EMAIL_PASSWORD")
 )
 
 def testSendEmail():
