@@ -31,6 +31,7 @@ class CrispyFormTestView(TemplateView):
                 break
         context['form'] = questionnaires_by_day[context['day']]
         context['datestring'] = f"{context['day']}, September {dates_by_day[context['day']]}, 2022"
+        context['email'] = context['user']['E-mail Address']
         return context
 
 class CrispyFormSubmitView(View):

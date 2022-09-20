@@ -157,7 +157,7 @@ class latbWedForm(forms.Form):
                 'Signature',
                 layout.HTML("<p>By signing, I attest that I have attended the above programs in full, or for time indicated if I did not attend the full session."),
                 'e_signature',
-                layout.HTML("<p>A certificate will be emailed to {{ user.content.email }}.<p>")
+                layout.HTML("<p>A certificate will be emailed to {{ email }}.<p>")
             ),
             layout.Submit('Submit', 'SUBMIT')
         )
@@ -423,7 +423,7 @@ class latbThursForm(forms.Form):
                 'Signature',
                 layout.HTML("<p>By signing, I attest that I have attended the above programs in full, or for time indicated if I did not attend the full session."),
                 'e_signature',
-                layout.HTML("<p>A certificate will be emailed to {{ user.content.email }}.<p>")
+                layout.HTML("<p>A certificate will be emailed to {{ email }}.<p>")
             ),
             layout.Submit('Submit', 'SUBMIT')
         )
@@ -614,7 +614,7 @@ class latbFriForm(forms.Form):
                 'Signature',
                 layout.HTML("<p>By signing, I attest that I have attended the above programs in full, or for time indicated if I did not attend the full session."),
                 'e_signature',
-                layout.HTML("<p>A certificate will be emailed to {{ user.content.email }}.<p>")
+                layout.HTML("<p>A certificate will be emailed to {{ email }}.<p>")
             ),
             layout.Submit('Submit', 'SUBMIT')
         )
@@ -807,7 +807,7 @@ class latbSatForm(forms.Form):
                 'Signature',
                 layout.HTML("<p>By signing, I attest that I have attended the above programs in full, or for time indicated if I did not attend the full session."),
                 'e_signature',
-                layout.HTML("<p>A certificate will be emailed to {{ user.content.email }}.<p>")
+                layout.HTML("<p>A certificate will be emailed to {{ email }}.<p>")
             ),
             layout.Submit('Submit', 'SUBMIT')
         )
