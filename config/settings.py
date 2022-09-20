@@ -239,4 +239,4 @@ LOGGING = {
     }
 }
 
-EMAIL_USE_SSL = True
+EMAIL_USE_TLS = True
