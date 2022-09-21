@@ -5,6 +5,62 @@ from environs import Env
 env = Env()
 env.read_env()
 
+sent_Wednesday = [
+    "Alicia Pendergrass",
+"Evelyn Coe",
+"La' Quandra Rampersant",
+"Shankana Johnson",
+"Travis Crawford",
+"Tammy Ward",
+"Jenna Gordon",
+"Elmira Obrien",
+"Catherine Thomas",
+"Jill Newman",
+"Kellie Foxworth",
+"Courtney Sturgill",
+"Teresa Hathcox",
+"Floella Shupe",
+"Sarah Rudder",
+"Dayna Wilder",
+"Sara Lara",
+"Laurrie Rumpp",
+"Amanda Langford",
+"Kim Ford",
+"Cheryl Ward",
+"Kristi Miller",
+"Hailey Lanford",
+"Krystal Hill",
+"Crystal Leoffler",
+"Betsey Scruggs",
+"Kathy Cox",
+"Kimberly Spires",
+"Mojirola Oguntoyinbo",
+"Zola Driggers",
+"Rebecka Rollins",
+"Misty Corrigan",
+"Vickie Blackburn",
+"Michele Lively",
+"Charnele Jackson",
+"Brandi Russ",
+"Darlene Batastini",
+"Maresa Butler",
+"Ana Yanes",
+"Carla Armstrong",
+"Dee Griffin",
+"Kimberly Hunsucker",
+"Camille Wilkinson",
+"Jacqueline Mintz",
+"Stephanie Burgess",
+"Ellen Mishra",
+"Michelle Gilchrist",
+"Irene Hallock",
+"Sheryl Aiken",
+"Whittle-Merchant",
+"Joe Reynolds",
+"Linda Alwine",
+"Kathleen Boone"
+]
+
 test_email_backend = EmailBackend(
     host = 'mail5.hostingplatform.com',
     port = 587,
@@ -28,7 +84,11 @@ def mailMergeByDay(data):
     test_email_backend.open()
     for current_registrant in data['queried']:
         print(current_registrant)
-        body = f"Dear {current_registrant['content']['First Name']} {current_registrant['content']['Last Name']},"
+        name = f"{current_registrant['content']['First Name']} {current_registrant['content']['Last Name']}"
+        if name in sent_Wednesday:
+            print(f"SKIPPING {current_registrant}")
+            continue
+        body = f"    Dear {name},\n"
         body += """
             Thank you for attending the 19th Annual Lecture at the Beach today!
 
@@ -36,8 +96,7 @@ def mailMergeByDay(data):
 
             Please click the link below to access the evaluation:
         """
-        body += f"https://request.cam/cams/LectureattheBeach/" + 'd1934f47-bd16-4a2e-8445-1c6ee160c4df' + "/eval?" + data['day']
-        # str(current_registrant['id']) + "/eval?" + data['day']
+        body += f"            https://request.cam/cams/LectureattheBeach/" + str(current_registrant['id']) + "/eval?" + data['day']
         body += """
             - Lecture at the Beach 2022
             - http://grandstrandapna.org/

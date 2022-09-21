@@ -20,7 +20,8 @@ class CamsModel(models.Model):
     description = models.TextField(blank=True)    
 
 class CamsModelInstance(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.TextField(primary_key=True, default=uuid.uuid4, editable=True)
     cams_model = models.ForeignKey(CamsModel, on_delete=models.CASCADE)
     content = models.JSONField()
     filepath = models.TextField(blank=True)
