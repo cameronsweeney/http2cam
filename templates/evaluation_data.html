@@ -15,6 +15,54 @@
           <h2>19th Annual Lecture at the Beach - Evaluations</h2>
       </div>
       <div class="accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general">
+              Did you find any bias in these lectures?
+            </button>
+          </h2>
+          <div id="general" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              {% for answer in other.bias_bool %}
+                <p>{% cycle 'No: ' 'Yes: ' %}{{ answer }}</p>
+              {% endfor %}
+              <p>{{ other.bias }}% of responses answered Yes.</p>
+            </div>
+            <div class="accordion-body">
+              {% for comment in other.bias_comments %}
+                <p class="report-comment">{{ comment }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general">
+              Will the information provided change the way you practice?
+            </button>
+          </h2>
+          <div id="general" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              {% for answer in other.bias_bool %}
+                <p>{% cycle 'No: ' 'Yes: ' %}{{ answer }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general">
+              Workshop suggestions for 2023 Lecture at the Beach
+            </button>
+          </h2>
+          <div id="general" class="accordion-collapse collapse">
+            <div class="accordion-body">
+              {% for comment in other.workshop_suggestions %}
+                <p>{{ comment }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
         {% for workshop_name, data in workshops.items %}
           <div class="accordion-item">
             <h2 class="accordion-header">
@@ -24,7 +72,6 @@
             </h2>
             <div id="{{workshop_name}}" class="accordion-collapse collapse">
               <div class="accordion-body">
-
                 {% for question in data.questions %}
                   {% if question %}
                   <div class="card-body report-question">
