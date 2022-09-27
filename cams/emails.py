@@ -5,62 +5,6 @@ from environs import Env
 env = Env()
 env.read_env()
 
-sent_Wednesday = [
-    "Alicia Pendergrass",
-"Evelyn Coe",
-"La' Quandra Rampersant",
-"Shankana Johnson",
-"Travis Crawford",
-"Tammy Ward",
-"Jenna Gordon",
-"Elmira Obrien",
-"Catherine Thomas",
-"Jill Newman",
-"Kellie Foxworth",
-"Courtney Sturgill",
-"Teresa Hathcox",
-"Floella Shupe",
-"Sarah Rudder",
-"Dayna Wilder",
-"Sara Lara",
-"Laurrie Rumpp",
-"Amanda Langford",
-"Kim Ford",
-"Cheryl Ward",
-"Kristi Miller",
-"Hailey Lanford",
-"Krystal Hill",
-"Crystal Leoffler",
-"Betsey Scruggs",
-"Kathy Cox",
-"Kimberly Spires",
-"Mojirola Oguntoyinbo",
-"Zola Driggers",
-"Rebecka Rollins",
-"Misty Corrigan",
-"Vickie Blackburn",
-"Michele Lively",
-"Charnele Jackson",
-"Brandi Russ",
-"Darlene Batastini",
-"Maresa Butler",
-"Ana Yanes",
-"Carla Armstrong",
-"Dee Griffin",
-"Kimberly Hunsucker",
-"Camille Wilkinson",
-"Jacqueline Mintz",
-"Stephanie Burgess",
-"Ellen Mishra",
-"Michelle Gilchrist",
-"Irene Hallock",
-"Sheryl Aiken",
-"Whittle-Merchant",
-"Joe Reynolds",
-"Linda Alwine",
-"Kathleen Boone"
-]
-
 test_email_backend = EmailBackend(
     host = 'mail5.hostingplatform.com',
     port = 587,
@@ -83,11 +27,12 @@ def testSendEmail():
 def mailMergeByDay(data):
     test_email_backend.open()
     for current_registrant in data['queried']:
-        print(current_registrant)
+        #print(current_registrant)
         name = f"{current_registrant['content']['First Name']} {current_registrant['content']['Last Name']}"
-        if name in sent_Wednesday:
-            print(f"SKIPPING {current_registrant}")
-            continue
+        #if current_registrant['content']['E-mail Address'] not in retry_Friday:
+        #    print(f"SKIPPING {current_registrant['content']['E-mail Address']}")
+        #    continue
+        print(f"SENDING EMAIL TO {current_registrant}")
         body = f"    Dear {name},\n"
         body += """
             Thank you for attending the 19th Annual Lecture at the Beach today!
@@ -98,16 +43,19 @@ def mailMergeByDay(data):
         """
         body += f"            https://request.cam/cams/LectureattheBeach/" + str(current_registrant['id']) + "/eval?" + data['day']
         body += """
-            - Lecture at the Beach 2022
-            - http://grandstrandapna.org/
+    - Lecture at the Beach 2022
+    - http://grandstrandapna.org/
         """
 
-        mail.EmailMessage(
+        valid = mail.EmailMessage(
             subject = f"Lecture at the Beach 2022 - {data['day']} Evaluations",
             body = body,
             from_email = '"Lecture at the Beach 2022" <conference@grandstrandapna.org>',
             to = [current_registrant['content']['E-mail Address']],
+            bcc = ['conference@grandstrandapna.org'],
             connection = test_email_backend
         ).send()
+        if not valid:
+            print("!!! FAILED TO SEND EMAIL DESCRIBED ABOVE")
     test_email_backend.close()
 

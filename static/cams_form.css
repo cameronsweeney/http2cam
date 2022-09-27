@@ -103,3 +103,10 @@ legend {
 .separator {
     margin: var(--measure-2) 0 var(--measure-2) 0;
 }
+
+.report-comment {
+    border: solid thin black;
+    border-radius: var(--measure-half);
+    padding: var(--measure-half);
+    margin-bottom: var(--measure-half);
+}
