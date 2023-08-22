@@ -7,7 +7,6 @@ urlpatterns = [
     path('csrf/', GetCSRFTokenView.as_view()),
     path('dj-rest-auth/', include('dj_rest_auth.urls')), 
     path('apilogin/', include('rest_framework.urls')), # adds login to browsable API
-    path('cams/', include('cams.urls')),
     path('pokedex/', include('pokedex.urls')),
     path('', include('homepage.urls'))
 ]

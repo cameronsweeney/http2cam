@@ -67,7 +67,6 @@ INSTALLED_APPS = [
 
     'accounts',
     'homepage',
-    'cams',
     'pokedex',
 ]
 
